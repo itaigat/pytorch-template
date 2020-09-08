@@ -1,0 +1,6 @@
+hydra-core==1.0.0
+schema==0.7.2
+tensorboard==2.3.0
+torch==1.6.0
+torchvision==0.7.0
+tqdm==4.48.2
