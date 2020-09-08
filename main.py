@@ -1,3 +1,8 @@
+"""
+Main file
+We will run the whole program from here
+"""
+
 import torch
 import hydra
 
