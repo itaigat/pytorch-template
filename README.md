@@ -1,4 +1,7 @@
 <p align="center">
+  <a href="#">
+    <img src="https://img.shields.io/github/license/itaigat/pytorch-template" alt="PyPI - License" />
+  </a>
     <a href="https://lgtm.com/projects/g/itaigat/pytorch-template/context:python">
         <img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/itaigat/pytorch-template.svg?logo=lgtm&logoWidth=18"/>
     </a>
