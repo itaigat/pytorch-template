@@ -60,13 +60,13 @@ In case you add/change a type you can add it to `utils/types.py`
 ## Checklists
 ### Checklist for a new dataset
 To add a new dataset:
-- [] Add relevant variables to the constructor
-- [] Implement `self.load_features`
-- [] Implement `self._get_entries`
-- [] Implement `self.__getitem__`
+- [ ] Add relevant variables to the constructor
+- [ ] Implement `self.load_features`
+- [ ] Implement `self._get_entries`
+- [ ] Implement `self.__getitem__`
 ### Checklist for a change in configuration
 To change a variable in the configuration file:
-- [] Change it in the `config.yaml` file
-- [] Update the schema under `utils/config_schema.py`
-- [] Update `TrainParams` in `utils/train_utils.py`
+- [ ] Change it in the `config.yaml` file
+- [ ] Update the schema under `utils/config_schema.py`
+- [ ] Update `TrainParams` in `utils/train_utils.py`
 ## Credits
