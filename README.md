@@ -1,4 +1,5 @@
 # Pytorch template
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/itaigat/pytorch-template.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/itaigat/pytorch-template/alerts/)
 In this project, we provide a strong template for a PyTorch project.
 
 ## Structure
