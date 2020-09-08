@@ -70,6 +70,7 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
             metrics['total_norm'] += nn.utils.clip_grad_norm_(model.parameters(), train_params.grad_clip)
             metrics['count_norm'] += 1
 
+            # NOTE! This function compute scores correctly only for one hot encoding representation of the label
             batch_score = train_utils.compute_score_with_logits(y_hat, y.data).sum()
             metrics['train_score'] += batch_score.item()
 
