@@ -9,6 +9,7 @@ CFG_SCHEMA = {
         'num_workers': int,
         'parallel': bool,
         'gpus_to_use': str,
+        'trains': bool,
         'paths': {
             'train': str,
             'validation': str,

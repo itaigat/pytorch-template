@@ -31,12 +31,14 @@ class TrainLogger:
         self.exp_name = f'{exp_name_prefix}_{self._get_time_string()}'
         self.exp_dir = os.path.join(logs_dir, self.exp_name)
 
+        main_utils.make_dir(self.exp_dir)
+
         # Init tensorboard
         tensorboard_path = os.path.join(logs_dir, 'tensorboard', self.exp_name)
         self.tensorboard_writer = SummaryWriter(tensorboard_path)
 
         # Init console and file logger
-        self.logger = self._init_logger(self.exp_dir)
+        self.logger = self._init_logger(self.exp_dir, self.exp_name)
 
     def write(self, text: str, epoch: int = None, severity: str = 'info') -> None:
         """
@@ -110,10 +112,11 @@ class TrainLogger:
         return f'{time.month}_{time.day}_{time.hour}_{time.minute}_{time.second}'
 
     @staticmethod
-    def _init_logger(exp_dir: PathT) -> logging.Logger:
+    def _init_logger(exp_dir: PathT, exp_name: str) -> logging.Logger:
         """
         Create a logger instance
         :param exp_dir: the directory that will hold the log file
+        :param exp_name: the experiment name
         :return: a logger instance
         """
         # Create logger
@@ -129,7 +132,8 @@ class TrainLogger:
         _logger.addHandler(ch)
 
         # Add file handler
-        fh = logging.FileHandler(filename=f'{exp_dir}.log')
+        file_path = os.path.join(exp_dir, f'{exp_name}.log')
+        fh = logging.FileHandler(filename=file_path)
         fh.setFormatter(formatter)
         _logger.addHandler(fh)
 
@@ -155,11 +159,11 @@ class TrainLogger:
         :param train_score:
         :param eval_score:
         """
-        text = 'epoch %d, time: %.2f' % (epoch, epoch_time)
-        text += '\n'
-        text += 'train_loss: %.2f, norm: %.4f, score: %.2f' % (train_loss, norm, train_score)
-        text += '\n'
-        text += 'eval score: %.2f' % eval_score
+        text = 'Time: %.2f, ' % epoch_time
+        text += 'Gradient norm: %.4f, ' % train_loss
+        text += 'Train loss: %.2f, ' % norm
+        text += 'Train Score: %.2f, ' % train_score
+        text += 'Val score: %.2f' % eval_score
 
         self.write(text, epoch)
 

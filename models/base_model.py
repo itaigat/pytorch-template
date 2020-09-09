@@ -11,7 +11,7 @@ class MyModel(nn.Module, metaclass=ABCMeta):
     """
     Example for a simple model
     """
-    def __init__(self, input_dim: int = 32, num_hid: int = 256, output_dim: int = 1, dropout: float = 0.2):
+    def __init__(self, input_dim: int = 50, num_hid: int = 256, output_dim: int = 2, dropout: float = 0.2):
         super(MyModel, self).__init__()
         self.classifier = FCNet([input_dim, num_hid, num_hid, output_dim], 'ReLU', dropout=dropout)
 

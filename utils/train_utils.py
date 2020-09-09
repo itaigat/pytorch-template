@@ -18,7 +18,9 @@ def compute_score_with_logits(logits: Tensor, labels: Tensor) -> Tensor:
     """
     logits = torch.max(logits, 1)[1].data  # argmax
 
-    logits_one_hots = torch.zeros(*labels.size()).cuda()
+    logits_one_hots = torch.zeros(*labels.size())
+    if torch.cuda.is_available():
+        logits_one_hots = logits_one_hots.cuda()
     logits_one_hots.scatter_(1, logits.view(-1, 1), 1)
 
     scores = (logits_one_hots * labels)
@@ -30,7 +32,7 @@ def get_zeroed_metrics_dict() -> Dict:
     """
     :return: dictionary to store all relevant metrics for training
     """
-    return {'total_loss': 0, 'train_score': 0, 'total_norm': 0, 'count_norm': 0}
+    return {'train_loss': 0, 'train_score': 0, 'total_norm': 0, 'count_norm': 0}
 
 
 class TrainParams:

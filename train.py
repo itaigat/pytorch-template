@@ -38,6 +38,7 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
     :param logger:
     :return:
     """
+    metrics = train_utils.get_zeroed_metrics_dict()
     best_eval_score = 0
 
     # Create optimizer
@@ -74,7 +75,7 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
             batch_score = train_utils.compute_score_with_logits(y_hat, y.data).sum()
             metrics['train_score'] += batch_score.item()
 
-            metrics['total_loss'] += loss.item() * x.size(0)
+            metrics['train_loss'] += loss.item() * x.size(0)
 
             # Report model to tensorboard
             if epoch == 0 and i == 0 and train_params.save_model:
@@ -108,10 +109,10 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
 
         if metrics['eval_score'] > best_eval_score:
             best_eval_score = metrics['eval_score']
-            if TrainParams.save_model:
+            if train_params.save_model:
                 logger.save_model(model, epoch, optimizer)
 
-        return get_metrics(best_eval_score, metrics['eval_score'], metrics['train_loss'])
+    return get_metrics(best_eval_score, metrics['eval_score'], metrics['train_loss'])
 
 
 @torch.no_grad()
@@ -124,8 +125,6 @@ def evaluate(model: nn.Module, dataloader: DataLoader) -> Scores:
     """
     score = 0
     loss = 0
-
-    print('Evaluating...')
 
     for i, (x, y) in tqdm(enumerate(dataloader)):
         if torch.cuda.is_available():

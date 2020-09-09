@@ -1,8 +1,10 @@
 """
 Here, we create a custom dataset
 """
+import torch
+import pickle
 
-from typing import Any, List
+from typing import Any, Tuple, Dict, List
 from utils.types import PathT
 from torch.utils.data import Dataset
 
@@ -21,8 +23,8 @@ class MyDataset(Dataset):  # TODO: Add more documentation regards what to do in 
         # Create list of entries
         self.entries = self._get_entries()
 
-    def __getitem__(self, index: int) -> List:
-        pass
+    def __getitem__(self, index: int) -> Tuple:
+        return self.entries[index]['x'], self.entries[index]['y']
 
     def __len__(self) -> int:
         """
@@ -37,8 +39,8 @@ class MyDataset(Dataset):  # TODO: Add more documentation regards what to do in 
         :return:
         :rtype:
         """
-        features = {}
-        path = self.path
+        with open(self.path, "rb") as features_file:
+            features = pickle.load(features_file)
 
         return features
 
@@ -49,7 +51,17 @@ class MyDataset(Dataset):  # TODO: Add more documentation regards what to do in 
         """
         entries = []
 
-        for item in self.features:
-            pass
+        for idx, item in self.features.items():
+            entries.append(self.get_entry(item))
 
         return entries
+
+    @staticmethod
+    def get_entry(item: Dict) -> Dict:
+        """
+        :item: item from the data. In this example, {'input': Tensor, 'y': int}
+        """
+        x = item['input']
+        y = torch.Tensor([1, 0]) if item['label'] else torch.Tensor([0, 1])
+
+        return {'x': x, 'y': y}

@@ -3,6 +3,8 @@ Main utils file, all utils functions that are not related to train.
 """
 
 import os
+
+import hydra
 import torch
 import schema
 import operator
@@ -28,6 +30,7 @@ def get_model_string(model: nn.Module) -> str:
     for w in model.parameters():
         n_params += functools.reduce(operator.mul, w.size(), 1)
 
+    model_string += '\n'
     model_string += f'Params: {n_params}'
 
     return model_string
@@ -51,8 +54,6 @@ def make_dir(path: PathT) -> None:
     """
     if not os.path.exists(path):
         os.mkdir(path)
-    else:
-        warning_print(f'[Warning] {path} already exists')
 
 
 def warning_print(text: str) -> None:
@@ -102,3 +103,12 @@ def get_flatten_dict(cfg: DictConfig) -> Dict:
     :return: flatten dictionary
     """
     return _flatten_dict(cfg)
+
+
+def init(cfg: DictConfig) -> None:
+    """
+    :cfg: hydra configuration file
+    """
+    # TODO: Trains
+    os.chdir(hydra.utils.get_original_cwd())
+    validate_input(cfg)

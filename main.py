@@ -3,6 +3,7 @@ Main file
 We will run the whole program from here
 """
 
+import os
 import torch
 import hydra
 
@@ -24,7 +25,7 @@ def main(cfg: DictConfig) -> None:
     Run the code following a given configuration
     :param cfg: configuration file retrieved from hydra framework
     """
-    main_utils.validate_input(cfg)  # TODO: Trains
+    main_utils.init(cfg)
     logger = TrainLogger(exp_name_prefix=cfg['main']['experiment_name_prefix'], logs_dir=cfg['main']['paths']['logs'])
 
     # Set seed for results reproduction

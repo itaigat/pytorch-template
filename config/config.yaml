@@ -1,3 +1,10 @@
+defaults:
+  - hydra/job_logging: disabled
+  - hydra/output_subdir: null
+hydra:
+  output_subdir: null
+  run:
+    dir: logs/hydra
 main:
   experiment_name_prefix: my_exp
   seed: 1
@@ -6,16 +13,16 @@ main:
   gpus_to_use: 1,2
   trains: False
   paths:
-    train: 'data/train.json'
-    validation: 'data/validation.json'
+    train: 'data/train.pkl'
+    validation: 'data/validation.pkl'
     logs: 'logs/'
 train:
   num_epochs: 15
   grad_clip: 0.25
   dropout: 0.2
-  num_hid: 256
-  batch_size: 256
-  save_model: True
+  num_hid: 20
+  batch_size: 16
+  save_model: False
   lr:
     lr_value: 1e-3
     lr_decay: 15
