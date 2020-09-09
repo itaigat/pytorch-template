@@ -3,7 +3,6 @@ Main file
 We will run the whole program from here
 """
 
-import os
 import torch
 import hydra
 
