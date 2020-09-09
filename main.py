@@ -9,7 +9,7 @@ import hydra
 
 from train import train
 from dataset import MyDataset
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from models.base_model import MyModel
 from torch.utils.data import DataLoader
 
@@ -27,6 +27,7 @@ def main(cfg: DictConfig) -> None:
     """
     main_utils.init(cfg)
     logger = TrainLogger(exp_name_prefix=cfg['main']['experiment_name_prefix'], logs_dir=cfg['main']['paths']['logs'])
+    logger.write(OmegaConf.to_yaml(cfg))
 
     # Set seed for results reproduction
     main_utils.set_seed(cfg['main']['seed'])
@@ -50,7 +51,7 @@ def main(cfg: DictConfig) -> None:
     if torch.cuda.is_available():
         model = model.cuda()
 
-    print(main_utils.get_model_string(model))
+    logger.write(main_utils.get_model_string(model))
 
     # Run model
     train_params = train_utils.get_train_params(cfg)
