@@ -16,6 +16,8 @@
 In this project, we provide a strong template for a PyTorch project.
 The purpose of this repository is to provide an example (and strong utils on the way) for a deep learning project using
 PyTorch.
+## TensorBoard
+To run tensorboard simply run in the project directory `tensorboard --logdir logs/tensorboard`
 ## Structure
 ### Configuration
 We use the [Hydra](https://github.com/facebookresearch/hydra) framework for configuration. It allows us to easily read
@@ -47,7 +49,7 @@ Moreover, during the training and evaluation stage, the logger reports relevant 
 New dataset creation built from three stages:
 1. Set variables - set the relevant inputs to self.
 2. Load features - pick the best way to load features (memory/disk) and implement the load stage under `self._get_features()`
-3. Create a list of entries
+3. Create a list of entries - implement `self._get_entries()`
 
 Then, in `__getitem__` you only need to retrieve samples from the list you created in stage #3.
 ### Logger
@@ -64,7 +66,7 @@ In case you add/change a type you can add it to `utils/types.py`
 ### Checklist for a new dataset
 To add a new dataset:
 - [ ] Add relevant variables to the constructor
-- [ ] Implement `self.load_features`
+- [ ] Implement `self._get_features`
 - [ ] Implement `self._get_entries`
 - [ ] Implement `self.__getitem__`
 ### Checklist for a change in configuration
@@ -72,6 +74,4 @@ To change a variable in the configuration file:
 - [ ] Change it in the `config.yaml` file
 - [ ] Update the schema under `utils/config_schema.py`
 - [ ] Update `TrainParams` in `utils/train_utils.py`
-## TensorBoard
-To run tensorboard simply run in the project directory `tensorboard --logdir logs/tensorboard`
 ## Credits

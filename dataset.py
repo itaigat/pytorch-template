@@ -9,7 +9,7 @@ from utils.types import PathT
 from torch.utils.data import Dataset
 
 
-class MyDataset(Dataset):  # TODO: Add more documentation regards what to do in each function
+class MyDataset(Dataset):
     """
     Custom dataset template. Implement the empty functions.
     """
@@ -52,12 +52,12 @@ class MyDataset(Dataset):  # TODO: Add more documentation regards what to do in 
         entries = []
 
         for idx, item in self.features.items():
-            entries.append(self.get_entry(item))
+            entries.append(self._get_entry(item))
 
         return entries
 
     @staticmethod
-    def get_entry(item: Dict) -> Dict:
+    def _get_entry(item: Dict) -> Dict:
         """
         :item: item from the data. In this example, {'input': Tensor, 'y': int}
         """
