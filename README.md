@@ -72,4 +72,6 @@ To change a variable in the configuration file:
 - [ ] Change it in the `config.yaml` file
 - [ ] Update the schema under `utils/config_schema.py`
 - [ ] Update `TrainParams` in `utils/train_utils.py`
+## TensorBoard
+To run tensorboard simply run in the project directory `tensorboard --logdir logs/tensorboard`
 ## Credits

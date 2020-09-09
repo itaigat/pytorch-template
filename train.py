@@ -78,7 +78,7 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
             metrics['train_loss'] += loss.item() * x.size(0)
 
             # Report model to tensorboard
-            if epoch == 0 and i == 0 and train_params.save_model:
+            if epoch == 0 and i == 0:
                 logger.report_graph(model, x)
 
         # Learning rate scheduler step
