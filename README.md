@@ -12,7 +12,7 @@
 
 ----------------------
 
-# Pytorch template
+# PyTorch template
 In this project, we provide a strong template for a PyTorch project.
 The purpose of this repository is to provide an example (and strong utils on the way) for a deep learning project using
 PyTorch.
@@ -75,3 +75,5 @@ To change a variable in the configuration file:
 - [ ] Update the schema under `utils/config_schema.py`
 - [ ] Update `TrainParams` in `utils/train_utils.py`
 ## Credits
+* [Hydra](https://github.com/facebookresearch/hydra) for a great configuration framework.
+* [bottom-up-attention-vqa](https://github.com/hengyuan-hu/bottom-up-attention-vqa) for great modified layers.
