@@ -8,12 +8,12 @@ import hydra
 
 from train import train
 from dataset import MyDataset
-from omegaconf import DictConfig, OmegaConf
 from models.base_model import MyModel
 from torch.utils.data import DataLoader
-
 from utils import main_utils, train_utils
 from utils.train_logger import TrainLogger
+from omegaconf import DictConfig, OmegaConf
+
 
 torch.backends.cudnn.benchmark = True
 

@@ -4,9 +4,9 @@ Here, we create a custom dataset
 import torch
 import pickle
 
-from typing import Any, Tuple, Dict, List
 from utils.types import PathT
 from torch.utils.data import Dataset
+from typing import Any, Tuple, Dict, List
 
 
 class MyDataset(Dataset):
