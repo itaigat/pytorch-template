@@ -101,8 +101,8 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
                                       metrics['train_score'], metrics['eval_score'])
 
         scalars = {'Accuracy/Train': metrics['train_score'],
-                   'Accuracy/Validation': metrics['train_loss'],
-                   'Loss/Train': metrics['eval_score'],
+                   'Accuracy/Validation': metrics['eval_score'],
+                   'Loss/Train': metrics['train_loss'],
                    'Loss/Validation': metrics['eval_loss']}
 
         logger.report_scalars(scalars, epoch)
