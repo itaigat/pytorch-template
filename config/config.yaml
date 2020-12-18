@@ -19,7 +19,7 @@ main:
 train:
   num_epochs: 15
   grad_clip: 0.25
-  dropout: 0.2
+  dropout: 0.3
   num_hid: 20
   batch_size: 16
   save_model: False
