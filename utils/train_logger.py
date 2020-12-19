@@ -160,8 +160,8 @@ class TrainLogger:
         :param eval_score:
         """
         text = 'Time: %.2f, ' % epoch_time
-        text += 'Gradient norm: %.4f, ' % train_loss
-        text += 'Train loss: %.2f, ' % norm
+        text += 'Gradient norm: %.4f, ' % norm
+        text += 'Train loss: %.2f, ' % train_loss
         text += 'Train Score: %.2f, ' % train_score
         text += 'Val score: %.2f' % eval_score
 
