@@ -75,7 +75,7 @@ def train(model: nn.Module, train_loader: DataLoader, eval_loader: DataLoader, t
             batch_score = train_utils.compute_score_with_logits(y_hat, y.data).sum()
             metrics['train_score'] += batch_score.item()
 
-            metrics['train_loss'] += loss.item() * x.size(0)
+            metrics['train_loss'] += loss.item()
 
             # Report model to tensorboard
             if epoch == 0 and i == 0:
